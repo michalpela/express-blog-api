@@ -1,16 +1,22 @@
-const express = require('express');
+import express from 'express';
+import dotenv from 'dotenv';
+import indexRouter from './routes/index.js';
+import Post from './models/post.js';
+import connectToDB from "./config/db.js";
+
+
 const app = express();
-const indexRouter = require('./routes/index.js');
-const mongoose = require('mongoose');
+dotenv.config({path: `./config/.env`})
 
 app.set('views', "views")
 app.set('view engine', 'ejs')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+
 app.use(express.static("public"))
 
-const Post = require('./models/Post');
-mongoose.connect('mongodb://127.0.0.1:27017/blogDB');
+connectToDB();
 
 app.post('/admin/createPost', async (req, res) => {
     try {
@@ -29,10 +35,8 @@ app.post('/admin/createPost', async (req, res) => {
     }
 })
 
-
-
 app.use('/', indexRouter)
 
-app.listen(3000, () =>{
-  console.log("Server started on port 3000")
+app.listen(process.env.PORT, () =>{
+  console.log(`Server started on port ${process.env.PORT}`);
 });
