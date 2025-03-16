@@ -1,9 +1,13 @@
-import express from 'express';
-
-const router = express.Router();
+import { Router } from 'express';
+const router = Router();
 
 router.get('/', (req, res) => {
-  res.render('index', { title: 'Express Blog' });
+    const locals = {
+      title: "Index blog page",
+      description: "lorem ipsum dolor sit amet consectetur",
+    }
+
+  res.render('index', locals);
 })
 
 export default router;
