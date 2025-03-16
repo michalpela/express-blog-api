@@ -6,9 +6,8 @@ const connectToDB = async () => {
     try {
         await mongoose.connect(process.env.DB_URI, {
             autoIndex: true,
-        }).then(() => {
-            console.log("Connected to DB");
         })
+        console.log("Connected to DB");
     } catch (error) {
         console.log(error);
     }
