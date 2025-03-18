@@ -5,7 +5,7 @@ import index from './routes/index.js';
 import post from './routes/post.js';
 import connectToDB from "./config/db.js";
 
-connectToDB()
+await connectToDB()
 
 const app = express();
 
