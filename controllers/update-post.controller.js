@@ -14,10 +14,9 @@ export const updatePost = async (req, res) => {
             return res.status(404).json({ message: "Post not found" });
         }
 
-        res.status(200).json({ message: "Post successfully updated", data: updatedPost });
+        res.status(200).json({ message: "Post successfully updated"});
 
     } catch (error) {
-        console.error("Error updating post:", error);
         res.status(500).json({ message: "Error updating post" });
     }
 };

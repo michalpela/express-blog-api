@@ -10,7 +10,7 @@ import {updatePost} from "../controllers/update-post.controller.js";
 const router = Router();
 
 router.post(
-    '/admin/createPost',
+    '/createPost',
     addPost
 )
 router.get(
