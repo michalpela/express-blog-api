@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config({path: `./config/.env`})
 import connectToDB from "./config/db.js";
 import cors from 'cors';
+import cookieParser from "cookie-parser";
 
 import postRoutes from './routes/post.js';
 import auth from "./routes/auth.js";
@@ -21,7 +22,7 @@ app.use(cors({
   methods: 'GET, POST, PUT, DELETE',
   allowedHeaders: 'Content-Type,Authorization'
 }));
-
+app.use(cookieParser());
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
