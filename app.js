@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 
 import postRoutes from './routes/post.js';
 import auth from "./routes/auth.js";
+import commentRoutes from './routes/comment.js';
 
 await connectToDB()
 
@@ -33,6 +34,7 @@ app.use(express.static("public"))
 
 app.use('/api/', postRoutes)
 app.use('/api/', auth)
+app.use('/api/', commentRoutes)
 
 app.listen(process.env.PORT, () =>{
   console.log(`Server started on port ${process.env.PORT} in ${process.env.NODE_ENV} mode`);

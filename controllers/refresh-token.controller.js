@@ -16,6 +16,7 @@ export const refreshToken = async (req, res) => {
         const newAccessToken = jwt.sign(
             {
                 email: refreshTokenPayload.email.toLowerCase(),
+                admin: user.admin,
             },
             process.env.JWT_SECRET,
             {expiresIn: "1h"}

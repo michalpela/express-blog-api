@@ -6,10 +6,14 @@ export const authenticateToken = async (req, res, next) => {
 
     if (!token === null) return res.status(401).json({message:"Unauthorized"});
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-        if (err) return res.status(403).json({message:"Invalid token"});
+    try {
+        jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+            if (err) return res.status(403).json({message:"Invalid token"});
 
-        req.user = user;
-        next();
-    })
+            req.user = user;
+            next();
+        })
+    } catch (error) {
+        res.status(401).end();
+    }
 }
