@@ -3,7 +3,11 @@ import Post from "../models/post.js";
 export const getPosts = async (req, res) => {
         try {
             const limit = req.params.limit
-            const foundPosts = await Post.find().limit(limit);
+            const foundPosts = await Post
+                .find()
+                .sort({date: -1})
+                .select('title content date keyWords')
+                .limit(limit);
             let postsCount
             postsCount = foundPosts.length
             req.posts = foundPosts;
