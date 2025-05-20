@@ -9,6 +9,7 @@ export const getPost = async (req, res) => {
                 path: 'comments', select: 'author content date',
                 populate: { path: 'author', select: 'email' }
             })
+            .select('title content keyWords date')
             .exec();
         if (!postFound) {
             return res.status(404).json({message:"Not Found"});
