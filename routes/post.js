@@ -18,7 +18,7 @@ router.post(
     addPost
 )
 router.get(
-    '/get-all-posts',
+    '/get-all-posts/:limit?',
     getPosts
 )
 router.get(
